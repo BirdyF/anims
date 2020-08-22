@@ -27,41 +27,26 @@ class TranspBodyDetails extends StatelessWidget {
 
     return Container(
         width: 400,
-        height: 400,
+        height: 300,
         child: RawKeyboardListener(
           autofocus: true,
           focusNode: globalFocusNodeProducts,
-          onKey: (RawKeyEvent event) {
-            if (event.data.logicalKey == LogicalKeyboardKey.arrowDown) {
-              print("down----");
+          onKey: (RawKeyEvent event) { 
+
+            if (event.data.logicalKey == LogicalKeyboardKey.keyT) {
+              print("T is pushed---");
+              focusNode.unfocus();
+              Navigator.pushNamed(context, 'button');
+
             }
 
-            if (event.data.logicalKey == LogicalKeyboardKey.arrowUp) {
-              print("up---");
+            if (event.data.logicalKey == LogicalKeyboardKey.keyU) {
+              print("U is pushed---");
               focusNode.unfocus();
               Navigator.pushNamed(context, 'products');
             }
-
-            if (event.data.logicalKey == LogicalKeyboardKey.arrowRight) {
-              print("right---");
-              // Add a button wih transparency
-              focusNode.unfocus();
-              Navigator.pushNamed(context, 'products');
-
-            }
-
-            if (event.data.logicalKey == LogicalKeyboardKey.escape) {
-              print("escape");
-              focusNode.unfocus();
-              Navigator.pushNamed(context, 'products');
-            }
-
-            if (event.data.logicalKey == LogicalKeyboardKey.arrowLeft) {
-              print("left---");
-              focusNode.unfocus();
-              Navigator.pushNamed(context, 'products');
-            }
-
+            
+            // Enter key is not mapped
             if (event.data.logicalKey == LogicalKeyboardKey.enter) {
               print("Enter !!!!");
               focusNode.unfocus();
@@ -75,14 +60,22 @@ class TranspBodyDetails extends StatelessWidget {
               focusNode.unfocus();
               Navigator.pushNamed(context, 'button');
             },
-            child: Column(
-              // crossAxisAlignment: CrossAxisAlignment.start,
+
+            onDoubleTap: () {
+              print('Double double tap to get back');
+
+              focusNode.unfocus();
+              Navigator.pushNamed(context, 'products');
+            },
+
+           child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
+        
                 Container(
                   width: 300,
-                  height: 250,
+                  height: 327,
                   padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
                   decoration: BoxDecoration(
                     color: kBackgroundColor,
@@ -122,12 +115,14 @@ class TranspBodyDetails extends StatelessWidget {
 
                       // SizedBox(height: kDefaultPadding),
                       AddToCart(),
+                      SizedBox(width: 200, height: 20 ,),
                     ],
                   ),
                 ),
               ],
             ),
+          )
           ),
-        ));
+        );
   }
 }

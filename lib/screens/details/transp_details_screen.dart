@@ -12,11 +12,12 @@ class TranspDetailsScreen extends StatelessWidget {
   const TranspDetailsScreen({Key key, this.productId}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    
     return Container(
-        width: 400,
-        height: 700,
-        child: TranspBodyDetails(key: key, productId: productId));
+            width: 400,
+            height: 100,
+            child: TranspBodyDetails(key: key, productId: productId)
+    );
+
   }
 
   AppBar buildAppBar(BuildContext context) {

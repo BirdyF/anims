@@ -16,7 +16,7 @@ class TranspProductsScreen extends StatelessWidget {
 
     return Stack(children: [
       Positioned(
-          top: 80, left: 300, child: Container(width: 400, child: TranspBody(key: key))),
+          bottom: 0, right: 0, child: Container(width: 400, child: TranspBody(key: key))),
     ]);
 
     /***** 
