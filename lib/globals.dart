@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // in ms used to animate the transition between screens
-int speedAnim = 1000; // in ms
+int speedAnim = 1300; // in ms
 
 void moveToAnotherScreen(
     BuildContext context, FocusNode node, String pageName) {
