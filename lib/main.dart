@@ -8,13 +8,17 @@ import 'package:anims/screens/details/transp_details_screen.dart';
 
 import 'package:anims/screens/button.dart';
 
+import 'package:anims/globals.dart';
+
 main() {
   runApp(RootWidget());
 }
 
 class RootWidget extends StatelessWidget {
   Widget build(BuildContext context) {
+    // To remove the status bar
     SystemChrome.setEnabledSystemUIOverlays([]);
+
     return Localizations(
       delegates: [
         GlobalMaterialLocalizations.delegate,
@@ -24,7 +28,7 @@ class RootWidget extends StatelessWidget {
       child: Directionality(
         child: Navigator(
           onGenerateRoute: _generate,
-          onUnknownRoute: _generate,
+          onUnknownRoute: _routeError,
           initialRoute: '/',
         ),
         textDirection: TextDirection.ltr,
@@ -36,6 +40,8 @@ class RootWidget extends StatelessWidget {
 Route _generate(RouteSettings settings) {
   Route page;
   switch (settings.name) {
+
+    /***** 
     case "/":
       {
         page = PageRouteBuilder(
@@ -44,7 +50,7 @@ Route _generate(RouteSettings settings) {
               print('launching button');
               return ButtonPage();
             },
-            transitionDuration: Duration(milliseconds: 2000),
+            transitionDuration: Duration(milliseconds: speedAnim),
             transitionsBuilder: (_, Animation<double> animation,
                 Animation<double> second, Widget child) {
               var begin = Offset(0.0, 1.0);
@@ -65,7 +71,9 @@ Route _generate(RouteSettings settings) {
             });
       }
       break;
+  ****/
 
+    case "/":
     case "button":
       {
         page = PageRouteBuilder(
@@ -75,7 +83,7 @@ Route _generate(RouteSettings settings) {
 
               return ButtonPage();
             },
-            transitionDuration: Duration(milliseconds: 2000),
+            transitionDuration: Duration(milliseconds: speedAnim),
             transitionsBuilder: (_, Animation<double> animation,
                 Animation<double> second, Widget child) {
               var begin = Offset(0.0, 1.0);
@@ -105,7 +113,7 @@ Route _generate(RouteSettings settings) {
               print('launching Products page');
               return TranspProductsScreen();
             },
-            transitionDuration: Duration(milliseconds: 2000),
+            transitionDuration: Duration(milliseconds: speedAnim),
             transitionsBuilder: (_, Animation<double> animation,
                 Animation<double> second, Widget child) {
               var begin = Offset(0.0, 1.0);
@@ -147,7 +155,7 @@ Route _generate(RouteSettings settings) {
                 productId: _productId,
               );
             },
-            transitionDuration: Duration(milliseconds: 2000),
+            transitionDuration: Duration(milliseconds: speedAnim),
             transitionsBuilder: (_, Animation<double> animation,
                 Animation<double> second, Widget child) {
               var begin = Offset(0.0, 1.0);
@@ -169,6 +177,39 @@ Route _generate(RouteSettings settings) {
       }
       break;
   }
+  return page;
+}
+
+Route _routeError(RouteSettings settings) {
+  Route page;
+  print('there is a problem in the routing');
+
+  page = PageRouteBuilder(
+      pageBuilder: (BuildContext context, Animation<double> animation,
+          Animation<double> secondaryAnimation) {
+        print('Routing error');
+        return Page2();
+      },
+      transitionDuration: Duration(milliseconds: speedAnim),
+      transitionsBuilder: (_, Animation<double> animation,
+          Animation<double> second, Widget child) {
+        var begin = Offset(0.0, 1.0);
+        var end = Offset.zero;
+        var tween = Tween(begin: begin, end: end);
+        // var curve = Curves.ease;
+        var curve = Curves.easeInQuart;
+
+        var curvedAnimation = CurvedAnimation(
+          parent: animation,
+          curve: curve,
+        );
+        // return SizeTransition(sizeFactor: animation, child: child);
+        return SlideTransition(
+          position: tween.animate(curvedAnimation),
+          child: child,
+        );
+      });
+
   return page;
 }
 

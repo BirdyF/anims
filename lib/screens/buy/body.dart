@@ -1,8 +1,4 @@
-
-
 import 'package:flutter/material.dart';
-
-
 
 class BuyScreen extends StatefulWidget {
   @override
@@ -13,7 +9,8 @@ class _BuyScreenState extends State<BuyScreen> {
   Widget build(BuildContext context) {
     return Center(
       child: RaisedButton(
-        child: Text('Hello from flutter........', style: TextStyle(backgroundColor: Colors.blue[300])),
+        child: Text('Hello from flutter........',
+            style: TextStyle(backgroundColor: Colors.blue[300])),
         onPressed: () {
           print('Pressed!!');
         },

@@ -5,18 +5,17 @@ import 'package:anims/constants.dart';
 import 'components/transp_body.dart';
 
 class TranspProductsScreen extends StatelessWidget {
-
   const TranspProductsScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     print('Build TranspProductsScreen');
 
-
-
     return Stack(children: [
       Positioned(
-          bottom: 0, right: 0, child: Container(width: 400, child: TranspBody(key: key))),
+          bottom: 0,
+          right: 0,
+          child: Container(width: 400, child: TranspBody(key: key))),
     ]);
 
     /***** 

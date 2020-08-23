@@ -3,11 +3,13 @@ import 'package:anims/constants.dart';
 import 'package:anims/models/product.dart';
 import 'package:anims/screens/details/transp_details_screen.dart';
 
+import 'package:anims/globals.dart';
+
 import 'transp_product_card.dart';
 
 import 'package:flutter/services.dart';
 
-FocusNode focusNode = FocusNode();
+
 bool toggleDetailed = true; // Go to detailed
 
 class TranspBody extends StatelessWidget {
@@ -15,6 +17,9 @@ class TranspBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext productContext) {
+    FocusNode focusNode = FocusNode();
+
+    focusNode = FocusNode();
     focusNode.requestFocus();
 
     return Container(
@@ -27,59 +32,46 @@ class TranspBody extends StatelessWidget {
             print('---logicalKey ${event.data.logicalKey}');
 
             if (event.data.logicalKey == LogicalKeyboardKey.arrowUp) {
-              print("up---");
-              _moveToAnotherScreen(productContext, 'button');
+              print("up from products---");
+              moveToAnotherScreen(productContext, focusNode, 'button');
             }
 
             if (event.data.logicalKey == LogicalKeyboardKey.keyU) {
-              print("Letter U ---");
-              focusNode.unfocus();
-              focusNode.dispose();
-              Navigator.pushNamed(productContext, 'details1');
+              print("Letter U from products ----");
+              moveToAnotherScreen(productContext, focusNode, 'details1');
             }
 
             if (event.data.logicalKey == LogicalKeyboardKey.keyT) {
-              print("Letter T ---");
-              focusNode.unfocus();
-              focusNode.dispose();
-              Navigator.pushNamed(productContext, 'details0');
+              print("Letter T from products ----");
+              moveToAnotherScreen(productContext, focusNode, 'details0');
             }
 
+/***** 
             if (event.data.logicalKey == LogicalKeyboardKey.arrowLeft) {
               print("left---");
               print('Going back');
-              focusNode.unfocus();
-              focusNode.dispose();
-              Navigator.pushNamed(productContext, 'button');
+              moveToAnotherScreen(productContext, focusNode, 'button');
             }
 
             if (event.data.logicalKey == LogicalKeyboardKey.arrowRight) {
               print("right---");
-
-              focusNode.unfocus();
-              focusNode.dispose();
-              Navigator.pushNamed(productContext, 'details');
+              moveToAnotherScreen(productContext, focusNode, 'details0');
             }
+****/
 
             if (event.data.logicalKey == LogicalKeyboardKey.enter) {
               print("Enter !!!!");
-              focusNode.unfocus();
-              focusNode.dispose();
-              Navigator.pushNamed(productContext, 'details');
+              moveToAnotherScreen(productContext, focusNode, 'details0');
             }
           },
           child: GestureDetector(
             onTap: () {
-              print('Tap to get the details screen');
-              focusNode.unfocus();
-              focusNode.dispose();
-              Navigator.pushNamed(productContext, 'details1');
+              print('Tap to get the details screen from products-');
+              moveToAnotherScreen(productContext, focusNode, 'details1');
             },
             onDoubleTap: () {
-              print("let's go back");
-              focusNode.unfocus();
-              focusNode.dispose();
-              Navigator.pushNamed(productContext, 'button');
+              print("let's go back from products-");
+              moveToAnotherScreen(productContext, focusNode, 'button');
             },
             child: Container(
               width: 400,
@@ -90,7 +82,6 @@ class TranspBody extends StatelessWidget {
                 height: 400,
                 child: ListView.builder(
                   scrollDirection: Axis.vertical,
-                  // here we use our demo products list
                   itemCount: products.length,
                   itemBuilder: (context, index) => TranspProductCard(
                     itemIndex: index,
@@ -114,10 +105,4 @@ class TranspBody extends StatelessWidget {
           ),
         ));
   }
-}
-
-void _moveToAnotherScreen(BuildContext context, String pageName) {
-  focusNode.unfocus();
-  focusNode.dispose();
-  Navigator.pushNamed(context, pageName);
 }

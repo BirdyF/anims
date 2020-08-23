@@ -1,4 +1,14 @@
 import 'package:flutter/material.dart';
 
-final FocusNode globalFocusNodeButton = FocusNode();
-final FocusNode globalFocusNodeProducts = FocusNode();
+// in ms used to animate the transition between screens
+int speedAnim = 2000; // in ms
+
+void moveToAnotherScreen(
+    BuildContext context, FocusNode node, String pageName) {
+  if (node.hasFocus) {
+    node.unfocus();
+    // node.dispose();
+    Navigator.pushNamed(context, pageName);
+  }
+  
+}
