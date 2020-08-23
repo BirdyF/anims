@@ -66,7 +66,7 @@ class TranspBodyDetails extends StatelessWidget {
 
             if (event.data.logicalKey == LogicalKeyboardKey.arrowRight) {
               print("right from Details---");
-              moveToAnotherScreen(context, focusNode, 'details0');
+              moveToAnotherScreen(context, focusNode, 'products');
             }
               }
             }

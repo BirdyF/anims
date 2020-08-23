@@ -1,16 +1,29 @@
 # anims
 
-A new Flutter project.
+A very small demo of interactive advertising
 
-## Getting Started
+## Explanations
 
-This project is a starting point for a Flutter application.
+Based on 
+- [Original furniture_app demo](https://github.com/abuanwar072/furniture_app_flutter)
 
-A few resources to get you started if this is your first Flutter project:
+## How to use
+Click on the screen to see the button on the right
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+When you see the grey button 
+Arrow down to show the list of products 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+In the list of products
+Type T to get detailes info on the first product
+Type U to get detailes info on the second product
+Arrow up to remove this list and show again the buy button
+
+When you see only one product in the center
+Arrow left to get back to button page
+Arrow right to get back to the list of products 
+
+
+## Support of enter key
+When testing on Chrome MacOs I can see sometimes 
+
+
