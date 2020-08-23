@@ -25,5 +25,6 @@ Arrow right to get back to the list of products
 
 ## Support of enter key
 When testing on Chrome MacOs I can see sometimes 
+flutter : ---logicalKey <optimized out>#70077
 
 
