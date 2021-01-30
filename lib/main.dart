@@ -4,6 +4,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
 
 import 'package:anims/screens/product/transp_products_screen.dart';
+import 'package:anims/screens/consent/transp_consent_screen.dart';
+
 import 'package:anims/screens/details/transp_details_screen.dart';
 
 import 'package:anims/screens/button.dart';
@@ -74,7 +76,37 @@ Route _generate(RouteSettings settings) {
   ****/
 
     case "/":
-    case "button":
+      {
+        page = PageRouteBuilder(
+            pageBuilder: (BuildContext context, Animation<double> animation,
+                Animation<double> secondaryAnimation) {
+              print('---launching start page');
+
+              return ButtonPage();
+            },
+            transitionDuration: Duration(milliseconds: speedAnim),
+            transitionsBuilder: (_, Animation<double> animation,
+                Animation<double> second, Widget child) {
+              var begin = Offset(0.0, 1.0);
+              var end = Offset.zero;
+              var tween = Tween(begin: begin, end: end);
+              // var curve = Curves.ease;
+              var curve = Curves.easeInQuart;
+
+              var curvedAnimation = CurvedAnimation(
+                parent: animation,
+                curve: curve,
+              );
+              // return SizeTransition(sizeFactor: animation, child: child);
+              return SlideTransition(
+                position: tween.animate(curvedAnimation),
+                child: child,
+              );
+            });
+      }
+      break;
+
+    case "button": 
       {
         page = PageRouteBuilder(
             pageBuilder: (BuildContext context, Animation<double> animation,
@@ -112,6 +144,36 @@ Route _generate(RouteSettings settings) {
                 Animation<double> secondaryAnimation) {
               print('launching Products page');
               return TranspProductsScreen();
+            },
+            transitionDuration: Duration(milliseconds: speedAnim),
+            transitionsBuilder: (_, Animation<double> animation,
+                Animation<double> second, Widget child) {
+              var begin = Offset(0.0, 1.0);
+              var end = Offset.zero;
+              var tween = Tween(begin: begin, end: end);
+              // var curve = Curves.ease;
+              var curve = Curves.easeInQuart;
+
+              var curvedAnimation = CurvedAnimation(
+                parent: animation,
+                curve: curve,
+              );
+              // return SizeTransition(sizeFactor: animation, child: child);
+              return SlideTransition(
+                position: tween.animate(curvedAnimation),
+                child: child,
+              );
+            });
+      }
+      break;
+
+    case "consent":
+      {
+        page = PageRouteBuilder(
+            pageBuilder: (BuildContext context, Animation<double> animation,
+                Animation<double> secondaryAnimation) {
+              print('launching Consent page');
+              return TranspConsentScreen();
             },
             transitionDuration: Duration(milliseconds: speedAnim),
             transitionsBuilder: (_, Animation<double> animation,

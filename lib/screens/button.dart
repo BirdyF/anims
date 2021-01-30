@@ -44,10 +44,23 @@ class _ButtonPageState extends State<ButtonPage> {
         autofocus: true,
         focusNode: focusNode,
         onKey: (RawKeyEvent event) {
-          if (event.data.logicalKey == LogicalKeyboardKey.arrowDown) {
-            print("down----");
-            moveToAnotherScreen(context, focusNode, 'products');
+          if (event.data.logicalKey == LogicalKeyboardKey.arrowRight) {
+            print("right----");
+            moveToAnotherScreen(context, focusNode, 'consent');
           }
+
+          if (event.data.logicalKey == LogicalKeyboardKey.enter) {
+            print("Enter----");
+            moveToAnotherScreen(context, focusNode, 'consent');
+          }
+
+          if ((event.data.logicalKey == LogicalKeyboardKey.arrowUp) ||
+            (event.data.logicalKey == LogicalKeyboardKey.arrowDown)) 
+          {
+            print("Up and Down----");
+            moveToAnotherScreen(context, focusNode, 'consent');
+          }
+    
         },
         // child: ListView(padding: const EdgeInsets.all(200), children: [
 
@@ -56,12 +69,14 @@ class _ButtonPageState extends State<ButtonPage> {
             alignment: Alignment.centerRight,
             child: Visibility(
               visible: _isPushButtonVisible,
-              child: RaisedButton(
-                  child: Text('Press OK to buy'),
+              // child: RaisedButton(
+              child: ElevatedButton(
+                  child: Text('Démo consentement pour TF1 publicité'),
                   onPressed: () {
                     print('Button pushed!');
-                    _toggleRaisedButton();
-                    moveToAnotherScreen(context, focusNode, 'products');
+                    // _toggleRaisedButton();
+                    // moveToAnotherScreen(context, focusNode, 'products');
+                    moveToAnotherScreen(context, focusNode, 'consent');
                   }),
             ),
           ),
